@@ -1,4 +1,4 @@
-import { readdir, readFile } from "node:fs/promises";
+import { mkdir, readdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import { PGlite } from "@electric-sql/pglite";
 import pg from "pg";
@@ -26,7 +26,9 @@ export async function sql<T = Record<string, unknown>>(
 }
 
 async function startLocal(): Promise<PGlite> {
-  const db = new PGlite(path.join(process.cwd(), "data", "pglite"));
+  const dir = path.join(process.cwd(), "data", "pglite");
+  await mkdir(dir, { recursive: true });
+  const db = new PGlite(dir);
   const files = (await readdir("migrations").catch(() => []))
     .filter((file) => file.endsWith(".sql"))
     .sort();

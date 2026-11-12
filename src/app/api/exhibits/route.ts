@@ -7,6 +7,8 @@ import { proposeCart } from "@/lib/propose";
 import { listExhibits, newExhibitId, saveExhibit } from "@/lib/store";
 import type { AgentSource, Proposal } from "@/lib/types";
 
+export const maxDuration = 30;
+
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 

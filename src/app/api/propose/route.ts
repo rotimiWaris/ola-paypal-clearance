@@ -4,6 +4,8 @@ import { isAccount, requireUser } from "@/lib/http-user";
 import { getLetter, listProducts } from "@/lib/records";
 import { proposeCart } from "@/lib/propose";
 
+export const maxDuration = 30;
+
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
