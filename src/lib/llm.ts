@@ -80,7 +80,7 @@ export async function proposeWithGroq(
   mandate: Mandate,
   catalog: Product[],
 ): Promise<Proposal> {
-  const model = process.env.GROQ_MODEL || "llama-3.3-70b-versatile";
+  const model = process.env.GROQ_MODEL || "openai/gpt-oss-120b";
   const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
     method: "POST",
     signal: AbortSignal.timeout(12_000),
@@ -153,7 +153,7 @@ export async function proposeWithGemini(
 
 export function modelLabel(): string | null {
   if (process.env.GROQ_API_KEY) {
-    return `Groq · ${process.env.GROQ_MODEL || "llama-3.3-70b-versatile"}`;
+    return `Groq · ${process.env.GROQ_MODEL || "openai/gpt-oss-120b"}`;
   }
   if (process.env.GEMINI_API_KEY) {
     return `Gemini · ${process.env.GEMINI_MODEL || "gemini-2.5-flash"}`;
